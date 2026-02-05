@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h2>Task Manager</h2>
+
+    <form action="/add" method="POST">
+        <input type="text" name="title" placeholder="Task title" required>
+        <input type="text" name="description" placeholder="Description" required>
+
+        <select name="status">
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+        </select>
+
+        <button type="submit">Add Task</button>
+    </form>
+
+    <hr>
+
+    <h3>Tasks</h3>
+
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task[1] }}</td>
+            <td>{{ task[2] }}</td>
+            <td>{{ task[3] }}</td>
+            <td>
+                <a href="/delete/{{ task[0] }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
